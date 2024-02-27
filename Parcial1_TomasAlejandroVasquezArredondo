@@ -1,0 +1,153 @@
+// Clase Persona que representa a una persona genérica
+class Persona {
+    // Propiedades
+    protected String nombre; // Nombre de la persona
+    protected int edad; // Edad de la persona
+    protected String direccion; // Dirección de la persona
+    protected String telefono; // Teléfono de la persona
+    protected String genero; // Género de la persona
+
+    // Constructor
+    public Persona(String nombre, int edad, String direccion, String telefono, String genero) {
+        // Inicialización de propiedades
+        this.nombre = nombre;
+        this.edad = edad;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.genero = genero;
+    }
+
+    // Método para presentar a la persona
+    public void presentarse() {
+        // Acción: Presenta la información básica de la persona
+        System.out.println("Hola, soy " + nombre + ", tengo " + edad + " años y vivo en " + direccion);
+    }
+
+    // Método que muestra el género de la persona
+    public void mostrarGenero() {
+        // Acción: Muestra el género de la persona
+        System.out.println("Mi género es: " + genero);
+    }
+
+    // Método abstracto para calcular el salario
+    public void calcularSalario() {
+        // Acción: Método abstracto que será implementado en las subclases
+    }
+}
+
+// Clase Estudiante que hereda de Persona
+class Estudiante extends Persona {
+    // Propiedades adicionales
+    private int grado; // Grado del estudiante
+    private String institucion; // Institución educativa del estudiante
+
+    // Constructor
+    public Estudiante(String nombre, int edad, String direccion, String telefono, String genero, int grado, String institucion) {
+        // Llamada al constructor de la clase base
+        super(nombre, edad, direccion, telefono, genero);
+        // Inicialización de propiedades adicionales
+        this.grado = grado;
+        this.institucion = institucion;
+    }
+
+    // Método para mostrar el grado del estudiante
+    public void mostrarGrado() {
+        // Acción: Muestra el grado del estudiante
+        System.out.println("Estoy en el grado " + grado);
+    }
+
+    // Implementación del método abstracto para calcular el salario
+    @Override
+    public void calcularSalario() {
+        // Acción: Muestra que los estudiantes no tienen salario
+        System.out.println("Los estudiantes no tienen salario.");
+    }
+}
+
+// Clase Docente que hereda de Persona
+class Docente extends Persona {
+    // Propiedades adicionales
+    private String materia; // Materia que enseña el docente
+    private double salario; // Salario mensual del docente
+
+    // Constructor
+    public Docente(String nombre, int edad, String direccion, String telefono, String genero, String materia, double salario) {
+        // Llamada al constructor de la clase base
+        super(nombre, edad, direccion, telefono, genero);
+        // Inicialización de propiedades adicionales
+        this.materia = materia;
+        this.salario = salario;
+    }
+
+    // Método para mostrar la materia que enseña el docente
+    public void mostrarMateria() {
+        // Acción: Muestra la materia que enseña el docente
+        System.out.println("Enseño la materia de " + materia);
+    }
+
+    // Implementación del método abstracto para calcular el salario
+    @Override
+    public void calcularSalario() {
+        // Acción: Muestra el salario mensual del docente
+        System.out.println("Mi salario mensual es: " + salario);
+    }
+}
+
+// Clase Administrativo que hereda de Persona
+class Administrativo extends Persona {
+    // Propiedades adicionales
+    private String cargo; // Cargo del administrativo
+    private double salario; // Salario mensual del administrativo
+
+    // Constructor
+    public Administrativo(String nombre, int edad, String direccion, String telefono, String genero, String cargo, double salario) {
+        // Llamada al constructor de la clase base
+        super(nombre, edad, direccion, telefono, genero);
+        // Inicialización de propiedades adicionales
+        this.cargo = cargo;
+        this.salario = salario;
+    }
+
+    // Método para mostrar el cargo del administrativo
+    public void mostrarCargo() {
+        // Acción: Muestra el cargo del administrativo
+        System.out.println("Mi cargo es: " + cargo);
+    }
+
+    // Implementación del método abstracto para calcular el salario
+    @Override
+    public void calcularSalario() {
+        // Acción: Muestra el salario mensual del administrativo
+        System.out.println("Mi salario mensual es: " + salario);
+    }
+}
+
+// Clase ObjetosDePersona para ejecutar el programa
+public class ObjetosDePersona {
+    public static void main(String[] args) {
+        // Crear instancias de diferentes personas
+        Estudiante estudiante = new Estudiante("Juan", 15, "Calle 123", "123456789", "Masculino", 9, "Colegio XYZ");
+        Docente docente = new Docente("María", 35, "Avenida Principal", "987654321", "Femenino", "Matemáticas", 2500.0);
+        Administrativo administrativo = new Administrativo("Pedro", 30, "Avenida Secundaria", "456789123", "Masculino", "Secretario", 2000.0);
+
+        // Llamar a los métodos de las instancias
+        estudiante.presentarse();
+        estudiante.mostrarGrado();
+        estudiante.mostrarGenero();
+        estudiante.calcularSalario();
+
+        docente.presentarse();
+        docente.mostrarMateria();
+        docente.mostrarGenero();
+        docente.calcularSalario();
+
+        administrativo.presentarse();
+        administrativo.mostrarCargo();
+        administrativo.mostrarGenero();
+        administrativo.calcularSalario();
+    }
+}
+// Explicación: 1. Abstracción: Se crea la clase Persona con propiedades y comportamientos genéricos que representan a una persona. Las subclases (Estudiante, Docente y Administrativo) extienden esta clase base para representar personas con características específicas.
+//2. Encapsulamiento: Las propiedades de cada clase están encapsuladas y se acceden mediante métodos públicos. Esto se evidencia en los métodos de acceso getter y setter que no están definidos explícitamente en el código pero son proporcionados automáticamente por Java para las propiedades declaradas como protected.
+//3. Herencia: Se utilizan relaciones de herencia para reutilizar y extender el comportamiento de la clase base Persona en las subclases Estudiante, Docente y Administrativo. Cada subclase hereda las propiedades y métodos de la clase Persona y luego puede agregar sus propias características específicas.
+//4. Polimorfismo: Se muestra el polimorfismo al sobrescribir el método calcularSalario() en las subclases (Estudiante, Docente y Administrativo) para adaptarse al comportamiento específico de cada tipo de persona. Aunque todos los objetos son del tipo Persona, al llamar al método calcularSalario() en cada uno de ellos, se ejecuta la versión correspondiente del método según el tipo de objeto que es.
